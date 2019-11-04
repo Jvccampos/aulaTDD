@@ -1,6 +1,6 @@
 package aulaTDD;
 
-abstract class Money  {
+class Money  {
    protected int amount;
    protected String currency;
    Money(int amount, String currency) {
@@ -18,11 +18,12 @@ abstract class Money  {
    static Money franc(int amount) {
       return new Franc(amount, "CHF");
     }
-   abstract Money times(int multiplier);
+   Money times(int multiplier) {
+	   return new Money(amount * multiplier, currency);
+   }
    public boolean equals(Object object) {
-       Money money = (Money) object;
-       
-       return (this.amount == money.amount) && getClass().equals(money.getClass());
+      Money money = (Money) object;
+      return amount == money.amount && currency().equals(money.currency());
    }
 }
 class Franc extends Money{   		
